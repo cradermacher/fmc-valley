@@ -1,0 +1,21 @@
+#encoding UTF-8
+#set global $page = "about"
+
+    #include "header.html.tmpl"
+
+    <div class="site-inner">
+        <main class="content">
+            <article class="weewx about" itemscope itemtype="https://schema.org/CreativeWork">
+
+                    #include "page-header.inc"
+
+                    #if os.path.exists("imprint.inc")
+                    #include "gdpr.inc"
+                    #end if
+
+            </article>
+        </main>
+    </div>
+
+
+    #include "footer.html.tmpl"
