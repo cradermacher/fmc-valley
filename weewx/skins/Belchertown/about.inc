@@ -1,3 +1,4 @@
+#encoding UTF-8
 <div class="entry-content about-outer" itemprop="text">
     <br>
     <h2>Wetterstation des FMC Valley in Schmidham</h2>
@@ -38,7 +39,7 @@
     <br>
     <table>
       <tr>
-        <th>Der Schaltkasten ist, wie auf nebenstehemdem Bild zu sehen aufgebaut. Alles wurde auf der Gitterplatte montiert. Die notwendigen Anschlüsse für Spannungszufuhr (12V) und die USB Webcam wurden nach außen verlegt. Der Rest befindet sich gesichert in der Box. Die 12V Zeitschaltuhr schaltet die +-Leitung der Spannungszuführung frei. Dann geht es auf den Spannungsregelr, der stabiliserte 5V für die Technik bereitstellt. Der USB Hub ist da dem USB Port des Routers angeschlossen. Am USB Hub wurde das LTE Modem, der Froggit DP1500, sowie die Zuleitung für die USB Webcam angeschlossen.</th>
+        <th>Der Schaltkasten ist, wie auf nebenstehemdem Bild zu sehen aufgebaut. Alles wurde auf der Gitterplatte montiert. Die notwendigen Anschlüsse für Spannungszufuhr (12V) und die USB Webcam wurden nach außen verlegt. Der Rest befindet sich gesichert in der Box. Die 12V Zeitschaltuhr schaltet die +-Leitung der Spannungszuführung frei. Dann geht es auf den Spannungsregler, der stabilisierte 5V für die Technik bereitstellt. Der USB Hub ist an dem USB Port des Routers angeschlossen. Am USB Hub wurde das LTE Modem, der Froggit DP1500, sowie die Zuleitung für die USB Webcam angeschlossen.</th>
         <th><img src="" alt="Bild techn. Aufbau Schaltkasten"</th>
       </tr>
     </table>
@@ -46,12 +47,12 @@
     <p></p>
     <br>
     <h3>Eingesetzte Hardware zentral</h3>
-    <p>Zentral kommt ein Raspberry Pi 4 zum Einsatz. Dieser wird im Rackschrank mit einem PoE Hat per Power ofer Ethernet mit Strom versorgt. Ein Adapter für eine m2.SSD dient als Basis für die Betriebssysteminstallation</p>
+    <p>Zentral kommt ein Raspberry Pi 4 zum Einsatz. Dieser wird im Rackschrank mit einem PoE Hat per Power over Ethernet mit Strom versorgt. Ein Adapter für eine m2.SSD dient als Basis für die Betriebssysteminstallation</p>
     <br>
     <h3>Software und Konfiguration der dezentralen Seite</h3>
-    <p>Der Router auf dem Flupgplatz baut über den LTE Stick eine Internetverbidnung auf. Da es sich bei dem Router um ein Modell mit openWRT handelt wird dann eine Wireguard-VPN Verbindung zur FritzBox des Betriebers aufgebaut. </p>
+    <p>Der Router auf dem Flupgplatz baut über den LTE Stick eine Internetverbidnung auf. Da es sich bei dem Router um ein Modell mit openWRT handelt wird dann eine Wireguard-VPN Verbindung zur FritzBox des Betreibers aufgebaut. </p>
     <p>Nach Aufbau der Verbindung ist es nun möglich von der zentralen Seite aus, die Installation am Flugplatz zu erreichen.</p>
-    <p>Der Router am Flugplatz hat aber noch ein paar mehr Aufgaben. Er eröffnet beim Start auch ein lokales WLAN. In dieses WLAN verbindet sich das Froggit WP1500 USB Gateway. Es kann nun seine Daten an die hinterlegten Wetterdienste senden, oder an eine eigene Station. Außerdem kann von der zentralen Seite pber das VPN auf diese Daten zugegriffen werden.</p>
+    <p>Der Router am Flugplatz hat aber noch ein paar mehr Aufgaben. Er eröffnet beim Start auch ein lokales WLAN. In dieses WLAN verbindet sich das Froggit DP1500 USB Gateway. Es kann nun seine Daten an die hinterlegten Wetterdienste senden, oder an eine eigene Station. Außerdem kann von der zentralen Seite über das VPN auf diese Daten zugegriffen werden.</p>
     <p>Außerdem erstellt der Router über einen CRON Job gesteuert alle 5 Minuten ein Bild der Webcam, formatiert es, und kopiert es auf den zentralen Server. Dies wird von einem Shell-Skript erledigt.</p>
     <p>Das Script kann hier <a href="https://github.com/cradermacher/fmc-valley/blob/main/camera.sh" target="_blank"> https://github.com/cradermacher/fmc-valley/blob/main/camera.sh</a> heruntergeladen werden</p>
     <br>
@@ -63,9 +64,10 @@
     <p>Innerhalb von weewx habe ich folgende zusätzliche Software installiert:</p>
     <ul>
         <li>Treiber für Froggit DP1500 <a href="https://github.com/gjr80/weewx-gw1000" target="_blank"> https://github.com/gjr80/weewx-gw1000 </a></li>
-        <li>Belchertown Skin <a href="https://github.com/poblabs/weewx-belchertown/tree/master/skins/Belchertown" target="_blank"> https://github.com/poblabs/weewx-belchertown/tree/master/skins/Belchertown </a></li>
+        <li>Belchertown Skin <a href="https://github.com/poblabs/weewx-belchertown" target="_blank"> https://github.com/poblabs/weewx-belchertown </a></li>
     </ul>
     <p>An der Software sind umfangreiche Einstellungen vorgenommen worden. Die Konfigurationsdateien können meinem <a href="https://github.com/cradermacher/fmc-valley" target="_blank"> Github</a>  entnommen werden</p>
+    <p>Der Webserver läuft auf dem Raspberry Pi, der auch die weewx Software ausführt. Die Webseite wird mit einem CNAME Eintrag beim Provider auf den DynDNS Eintrag umgeleitet. Damit der Zugang per https funktioniert kommt ein Reverse Proxy auf meinem Synology NAS zum Einsatz. Das Synology NAS übernimmt auch die Bereitstellung und Erneuerung des notwendigen Zertifikats.
     <br>
     <br>
     <p>Hier einige Informationen zum aktuellen Stand</p>
